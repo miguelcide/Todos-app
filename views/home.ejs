@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/site.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=PT+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="header"><%- include("../views/partials/header.html") %></div>
+
+    <div style="margin-left: 1%">
+      <h3>My Todos:</h3>
+    </div>
+
+    <!-- ---------------------------- BODY ---------------------------- -->
+    <div class="container">
+      <div class="card">
+        <div class="card-title">Work</div>
+        <div class="card-body" id="work-body">
+          <% if(locals.work) { %> <% for (let todo of locals.work) { %>
+          <div class="todo">
+            <span class="todo-description"><%= todo %></span>
+            <div class="date-button-container">
+              <span class="todo-date"><%= locals.date %></span>
+              <form action="/delete" method="POST">
+                <input type="hidden" name="category" value="Work" />
+                <input
+                  type="hidden"
+                  name="divId"
+                  value="<%= locals.work.indexOf(todo) %>"
+                />
+                <input class="todo-button" type="submit" value="X" />
+              </form>
+            </div>
+          </div>
+          <% } %> <% } %>
+        </div>
+        <div class="card-footer">Total Work todos: <%= locals.worktodos %></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Sports</div>
+        <div class="card-body" id="sports-body">
+          <% if(locals.sports) { %> <% for (let todo of locals.sports) { %>
+          <div class="todo">
+            <span class="todo-description"><%= todo %></span>
+            <div class="date-button-container">
+              <span class="todo-date"><%= locals.date %></span>
+              <form action="/delete" method="POST">
+                <input type="hidden" name="category" value="Sports" />
+                <input
+                  type="hidden"
+                  name="divId"
+                  value="<%= locals.sports.indexOf(todo) %>"
+                />
+                <input class="todo-button" type="submit" value="X" />
+              </form>
+            </div>
+          </div>
+          <% } %> <% } %>
+        </div>
+
+        <div class="card-footer">
+          Total Sports todos: <%= locals.sportstodos %>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Movies and Series</div>
+        <div class="card-body" id="movies-body">
+          <% if(locals.movies) { %> <% for (let todo of locals.movies) { %>
+          <div class="todo">
+            <span class="todo-description"><%= todo %></span>
+            <div class="date-button-container">
+              <span class="todo-date"><%= locals.date %></span>
+              <form action="/delete" method="POST">
+                <input
+                  type="hidden"
+                  name="category"
+                  value="Movies and Series"
+                />
+                <input
+                  type="hidden"
+                  name="divId"
+                  value="<%= locals.movies.indexOf(todo) %>"
+                />
+                <input class="todo-button" type="submit" value="X" />
+              </form>
+            </div>
+          </div>
+          <% } %> <% } %>
+        </div>
+
+        <div class="card-footer">
+          Total Movies and Series todos: <%= locals.moviestodos %>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">Fun</div>
+        <div class="card-body" id="fun-body">
+          <% if(locals.fun) { %> <% for (let todo of locals.fun) { %>
+          <div class="todo">
+            <span class="todo-description"><%= todo %></span>
+            <div class="date-button-container">
+              <span class="todo-date"><%= locals.date %></span>
+              <form action="/delete" method="POST">
+                <input type="hidden" name="category" value="Fun" />
+                <input
+                  type="hidden"
+                  name="divId"
+                  value="<%= locals.fun.indexOf(todo) %>"
+                />
+                <input class="todo-button" type="submit" value="X" />
+              </form>
+            </div>
+          </div>
+          <% } %> <% } %>
+        </div>
+
+        <div class="card-footer">Total Fun todos: <%= locals.funtodos %></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      My todos count: <%= locals.sessionTodos %>, all todos count: <%=
+      locals.allMyTodos %>
+    </div>
+  </body>
+</html>
